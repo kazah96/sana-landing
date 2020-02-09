@@ -1,11 +1,10 @@
-/* eslint-disable jsx-a11y/iframe-has-title */
 import React, { PureComponent } from "react"
 import "./style.css"
 import Layout from "../layout"
 
 class VideoPage extends PureComponent {
   componentDidMount() {
-    document.title = this.props.title || 'Video';
+    document.title = this.props.pathContext.title || "Video"
   }
 
   render() {
@@ -14,15 +13,18 @@ class VideoPage extends PureComponent {
     console.log(this.props)
     return (
       <Layout>
-        <div>{description}</div>
         <iframe
+          title={title}
           className="video"
+          width="800px"
+          height="400px"
           src={video_url}
+          allow="autoplay; fullscreen"
           frameborder="0"
           allowfullscreen
         ></iframe>
+        <div className="video-description">{description}</div>
       </Layout>
-      // eslint-disable-next-line jsx-a11y/iframe-has-title
     )
   }
 }

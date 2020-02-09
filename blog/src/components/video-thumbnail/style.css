@@ -17,7 +17,7 @@
 }
 
 .label {
-  font-weight: 900;
+  font-weight: 500;
   font-style: normal;
   line-height: 1.2em;
   text-transform: uppercase;
@@ -25,7 +25,9 @@
   letter-spacing: 0.1em;
   color: #fff;
   position: absolute;
-  width: 80%;
+  font-family: 'Oswald', sans-serif;
+
+  width: 100%;
   padding: 0 10%;
   top: 50%;
   -webkit-transform: translate(0, -50%);
