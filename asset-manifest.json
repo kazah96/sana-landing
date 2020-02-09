@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/sana-landing/static/css/main.c64bd143.chunk.css",
+    "main.js": "/sana-landing/static/js/main.418dfa48.chunk.js",
+    "main.js.map": "/sana-landing/static/js/main.418dfa48.chunk.js.map",
+    "runtime-main.js": "/sana-landing/static/js/runtime-main.b2f72746.js",
+    "runtime-main.js.map": "/sana-landing/static/js/runtime-main.b2f72746.js.map",
+    "static/js/2.d3bed9a9.chunk.js": "/sana-landing/static/js/2.d3bed9a9.chunk.js",
+    "static/js/2.d3bed9a9.chunk.js.map": "/sana-landing/static/js/2.d3bed9a9.chunk.js.map",
+    "index.html": "/sana-landing/index.html",
+    "precache-manifest.379adeea6c9cf9e3c57fa67b687f2cbd.js": "/sana-landing/precache-manifest.379adeea6c9cf9e3c57fa67b687f2cbd.js",
+    "service-worker.js": "/sana-landing/service-worker.js",
+    "static/css/main.c64bd143.chunk.css.map": "/sana-landing/static/css/main.c64bd143.chunk.css.map",
+    "static/js/2.d3bed9a9.chunk.js.LICENSE.txt": "/sana-landing/static/js/2.d3bed9a9.chunk.js.LICENSE.txt",
+    "static/media/bigbon.jpg": "/sana-landing/static/media/bigbon.bcc8f1fd.jpg",
+    "static/media/escape.png": "/sana-landing/static/media/escape.864dc597.png",
+    "static/media/miwa.png": "/sana-landing/static/media/miwa.e57f208e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b2f72746.js",
+    "static/js/2.d3bed9a9.chunk.js",
+    "static/css/main.c64bd143.chunk.css",
+    "static/js/main.418dfa48.chunk.js"
+  ]
+}
