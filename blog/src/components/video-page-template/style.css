@@ -1,5 +1,7 @@
 .video {
+  animation: 0.5s ease-in 0s 1 slideInFromLeft;
 }
+
 
 .video-description {
   width: 700px;

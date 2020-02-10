@@ -2,11 +2,23 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 body {
+  animation: 1s ease-in 0s 1 slideInFromLeft;
+  padding: 30px;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  transition: filter 5s;
   font-family: "Oswald", sans-serif;
   font-style: normal;
 }
