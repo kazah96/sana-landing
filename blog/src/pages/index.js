@@ -8,7 +8,6 @@ import Layout from "../components/layout"
 class Portfolio extends PureComponent {
 
   render() {
-    console.log(this.props)
     return (
       <Layout>
         <div>

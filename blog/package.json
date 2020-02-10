@@ -17,11 +17,12 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "react-markdown": "^4.3.1"
   },
   "devDependencies": {
-    "surge": "0.21.3",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "surge": "0.21.3"
   },
   "keywords": [
     "gatsby"

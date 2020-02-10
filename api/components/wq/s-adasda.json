@@ -1,0 +1,14 @@
+{
+  "info": {
+    "name": "SAdasda",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "About": {
+      "type": "richtext"
+    }
+  },
+  "connection": "default",
+  "collectionName": "components_wq_s_adasdas"
+}

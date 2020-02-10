@@ -10,7 +10,6 @@ class VideoPage extends PureComponent {
   render() {
     const { title, description, video_url } = this.props.pathContext
 
-    console.log(this.props)
     return (
       <Layout>
         <iframe

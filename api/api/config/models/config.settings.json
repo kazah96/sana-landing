@@ -1,0 +1,19 @@
+{
+  "info": {
+    "name": "config"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "key": {
+      "type": "string"
+    },
+    "value": {
+      "type": "text"
+    }
+  },
+  "connection": "default",
+  "collectionName": "configs"
+}

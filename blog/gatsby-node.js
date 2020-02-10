@@ -5,6 +5,9 @@ exports.createPages = ({ graphql, actions }) => {
   const blogPostTemplate = path.resolve(
     `src/components/video-page-template/index.jsx`
   )
+  const articleTemplate = path.resolve(
+    `src/components/article-template/index.jsx`
+  )
   // Query for markdown nodes to use in creating pages.
   // You can query for whatever data you want to create pages for e.g.
   // products, portfolio items, landing pages, etc.
@@ -12,6 +15,16 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       query loadPagesQuery($limit: Int!) {
+        allStrapiArticle {
+          edges {
+            node {
+              id
+              title
+              url
+              content
+            }
+          }
+        }
         allStrapiVideo(limit: $limit) {
           edges {
             node {
@@ -29,6 +42,16 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
+    result.data.allStrapiArticle.edges.forEach(({ node }) => {
+      createPage({
+        // Path for this page — required
+        path: `/${node.url || node.title}`,
+        component: articleTemplate,
+        context: {
+          ...node,
+        },
+      })
+    })
     // Create blog post pages.
     result.data.allStrapiVideo.edges.forEach(({ node }) => {
       createPage({

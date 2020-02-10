@@ -36,5 +36,5 @@ npm run build
 
 ```
 cd sana-landing/blog 
-surge --project ./public
+npm run deploy
 ```
