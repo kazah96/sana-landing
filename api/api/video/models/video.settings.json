@@ -21,7 +21,7 @@
     "image_url": {
       "type": "string"
     },
-    "order": {
+    "orderby": {
       "type": "integer"
     }
   }

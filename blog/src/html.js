@@ -18,6 +18,7 @@ export default function HTML(props) {
         crossorigin="anonymous"
       ></script>
       <body {...props.bodyAttributes}>
+        <div id="settings-root"></div>
         {props.preBodyComponents}
         <div
           key={`body`}

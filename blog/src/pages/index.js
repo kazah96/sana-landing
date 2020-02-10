@@ -9,8 +9,8 @@ import Layout from "../components/layout"
 class Portfolio extends PureComponent {
   render() {
     const videos = this.props.data.allStrapiVideo.edges.sort((a, b) => {
-      if (a.node.order > b.node.order) return 1
-      if (a.node.order < b.node.order) return -1
+      if (a.node.orderby > b.node.orderby) return 1
+      if (a.node.orderby < b.node.orderby) return -1
       return 0
     })
 
@@ -41,7 +41,7 @@ export const pageQuery = graphql`
           title
           video_url
           image_url
-          order
+          orderby
         }
       }
     }
