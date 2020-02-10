@@ -15,9 +15,11 @@ class HeaderPage extends PureComponent {
   changeTheme = () => {
     if (this.state.theme === "dark") {
       this.setState({ theme: "light" })
+      localStorage.setItem("theme", "light")
       document.documentElement.setAttribute("theme", "light")
     } else {
       document.documentElement.setAttribute("theme", "dark")
+      localStorage.setItem("theme", "dark")
       this.setState({ theme: "dark" })
     }
   }
@@ -57,9 +59,9 @@ class HeaderPage extends PureComponent {
               <i class="fab fa-instagram"></i>
             </a>
           </div>
-          <h2 className="name" >
-            {title}
-          </h2>
+          <a href="/" style={{ "text-decoration": "none" }}>
+            <h2 className="name">{title}</h2>
+          </a>
           <h4 className="sub-name">{subtitle}</h4>
           <Menu links={links} />
         </header>
