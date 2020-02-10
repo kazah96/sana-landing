@@ -8,6 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { Consumer } from "./theming-context"
 
 import Header from "./header"
 import "./layout.css"
@@ -56,23 +57,28 @@ const Layout = ({ children }) => {
   }))
 
   return (
-    <>
-      <Header
-        title={config.title}
-        width="200px"
-        height="200px"
-        subtitle={config.subtitle}
-        pages={pages}
-      />
-      <div
-        style={{
-          margin: `0 auto`,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main className="main-content">{children}</main>
-      </div>
-    </>
+    <Consumer>
+      {theme => (
+        <>
+          <Header
+            theme={theme}
+            title={config.title}
+            width="200px"
+            height="200px"
+            subtitle={config.subtitle}
+            pages={pages}
+          />
+          <div
+            style={{
+              margin: `0 auto`,
+              padding: `0 1.0875rem 1.45rem`,
+            }}
+          >
+            <main className="main-content">{children}</main>
+          </div>
+        </>
+      )}
+    </Consumer>
   )
 }
 

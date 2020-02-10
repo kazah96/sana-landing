@@ -1,33 +1,63 @@
 .header {
-    margin-top: 5px;
-    text-align: center;
+  margin-top: 5px;
+  text-align: center;
+}
+
+:root[theme="dark"] {
+  transition: filter 1s ease-in;
+  --main-header-h1: black;
+  --main-color: black;
+  --gray-color: rgb(173, 173, 173);
+  --sub-gray-color: rgb(107, 106, 106);
+  --opposite-color: white;
+
+  --video-from-filter: grayscale(1) brightness(0.65);
+  --video-to-filter: grayscale(0) brightness(1);
+
+  --video-label-opacity-from: 1;
+  --video-label-opacity-to: 0;
+}
+
+:root[theme="light"] {
+  --main-color: white;
+  --gray-color: rgb(81, 79, 79);
+  --sub-gray-color: rgb(107, 106, 106);
+  --opposite-color: black;
+  --main-header-h1: white;
+
+  --video-from-filter: grayscale(0) brightness(1);
+  --video-to-filter: grayscale(0.8) brightness(0.7);
+
+  --video-label-opacity-from: 0;
+  --video-label-opacity-to: 1;
 }
 
 .name {
-    margin: 0;
-    font-family: Varela Round,Helvetica,arial,sans-serif;
-    font-weight: normal;
-    text-transform: normal;
-    letter-spacing: 0px;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 900;
-    font-style: normal;
-    line-height: 1.2em;
-    text-transform: uppercase;
-    letter-spacing: .2em;
-    font-size: 40px;
+  margin: 0;
+  color: var(--opposite-color);
+  font-family: Varela Round, Helvetica, arial, sans-serif;
+  font-weight: normal;
+  text-transform: normal;
+  letter-spacing: 0px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 40px;
 }
 
 .sub-name {
-    font-weight: 100;
-    color: #535353;
+  font-weight: 100;
+  color: var(--gray-color);
 }
 
 .brands i {
-    margin-right: 10px;
-    color: rgb(173, 173, 173);
-    margin-right: 10px;
+  margin-right: 10px;
+  color: var(--gray-color);
 }
+
 .brands i:hover {
-    color: rebeccapurple;
+  color: rebeccapurple;
 }
