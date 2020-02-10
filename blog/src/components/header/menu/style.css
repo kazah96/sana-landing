@@ -6,7 +6,7 @@ li {
     margin-right: 40px;
 }
 .link {
-    color: lightgray;
+    color: rgb(92, 92, 92);
     text-decoration: none;
     margin: 0;
     font-family: Varela Round,Helvetica,arial,sans-serif;
@@ -24,5 +24,5 @@ li {
 }
 
 .selected {
-    color: black;
+    color: white;
 }
