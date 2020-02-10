@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import ReactMarkdown from 'react-markdown'
+import './style.css'
 
 import Layout from '../layout'
 

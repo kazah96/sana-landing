@@ -9,7 +9,7 @@
   --main-color: black;
   --gray-color: rgb(173, 173, 173);
   --sub-gray-color: rgb(107, 106, 106);
-  --opposite-color: white;
+  --opposite-color: rgb(229, 226, 226);
 
   --video-from-filter: grayscale(1) brightness(0.65);
   --video-to-filter: grayscale(0) brightness(1);
@@ -22,7 +22,8 @@
   --main-color: white;
   --gray-color: rgb(81, 79, 79);
   --sub-gray-color: rgb(107, 106, 106);
-  --opposite-color: black;
+  --opposite-color: rgb(46, 46, 46);
+
   --main-header-h1: white;
 
   --video-from-filter: grayscale(0) brightness(1);
@@ -55,7 +56,7 @@
 
 .brands i {
   margin-right: 10px;
-  color: var(--gray-color);
+  color: var(--sub-gray-color);
 }
 
 .brands i:hover {

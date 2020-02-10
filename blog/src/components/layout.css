@@ -15,6 +15,7 @@ html {
 body {
   background: var(--main-color);
   animation: 1s ease-in 0s 1 slideInFromLeft;
+  color: var(--gray-color);
   transition: background 2s ease-in;
   padding: 10px;
   margin: 0;
@@ -201,7 +202,7 @@ textarea {
   font: inherit;
 }
 html {
-  font: 112.5%/1.45em georgia, serif;
+  font: 12px georgia, serif;
   box-sizing: border-box;
   overflow-y: scroll;
 }
