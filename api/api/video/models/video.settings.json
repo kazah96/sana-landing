@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "videos",
   "info": {
     "name": "Video"
   },
@@ -18,8 +20,9 @@
     },
     "image_url": {
       "type": "string"
+    },
+    "order": {
+      "type": "integer"
     }
-  },
-  "connection": "default",
-  "collectionName": "videos"
+  }
 }

@@ -3,15 +3,21 @@ import VideoThumb from "../components/video-thumbnail"
 
 import { Link, graphql } from "gatsby"
 
-import './style.css'
+import "./style.css"
 import Layout from "../components/layout"
 
 class Portfolio extends PureComponent {
   render() {
+    const videos = this.props.data.allStrapiVideo.edges.sort((a, b) => {
+      if (a.node.order > b.node.order) return 1
+      if (a.node.order < b.node.order) return -1
+      return 0
+    })
+
     return (
       <Layout>
         <div className="thumbnails-container">
-          {this.props.data.allStrapiVideo.edges.map(({ node: item }) => {
+          {videos.map(({ node: item }) => {
             return (
               <Link to={`/videos/${item.title}`}>
                 <VideoThumb imgUrl={item.image_url} name={item.title} />
@@ -35,6 +41,7 @@ export const pageQuery = graphql`
           title
           video_url
           image_url
+          order
         }
       }
     }
