@@ -3,15 +3,15 @@ import VideoThumb from "../components/video-thumbnail"
 
 import { Link, graphql } from "gatsby"
 
+import './style.css'
 import Layout from "../components/layout"
 
 class Portfolio extends PureComponent {
-
   render() {
     return (
       <Layout>
-        <div>
-          {this.props.data.allStrapiVideo.edges.map(({node: item}) => {
+        <div className="thumbnails-container">
+          {this.props.data.allStrapiVideo.edges.map(({ node: item }) => {
             return (
               <Link to={`/videos/${item.title}`}>
                 <VideoThumb imgUrl={item.image_url} name={item.title} />

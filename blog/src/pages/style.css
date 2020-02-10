@@ -1,0 +1,7 @@
+.thumbnails-container > a {
+    font-size: 0;
+}
+
+.thumbnails-container {
+    line-height: 0;
+}

@@ -1,28 +1,29 @@
-ul, li {
-    display: inline;
+ul,
+li {
+  display: inline;
 }
 
 li {
-    margin-right: 40px;
+  margin-right: 40px;
 }
 .link {
-    color: lightgray;
-    text-decoration: none;
-    margin: 0;
-    font-family: Varela Round,Helvetica,arial,sans-serif;
-    font-weight: normal;
-    text-transform: normal;
-    letter-spacing: 0px;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 100;
-    font-style: normal;
-    line-height: 1.2em;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    font-size: 10px;
-    
+  color: rgb(92, 92, 92);
+  text-decoration: none;
+  margin: 0;
+  font-family: Varela Round, Helvetica, arial, sans-serif;
+  font-weight: normal;
+  text-transform: normal;
+  letter-spacing: 0px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 10px;
 }
 
 .selected {
-    color: black;
+  color: #c57b2c;
+  text-decoration: underline;
 }
