@@ -1,6 +1,6 @@
-import React, { PureComponent } from "react"
-import "./style.css"
-import { Link } from "gatsby"
+import React, { PureComponent } from 'react'
+import './style.css'
+import { Link } from 'gatsby'
 
 class Menu extends PureComponent {
   render() {

@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react"
 import "./style.css"
 import PropTypes from "prop-types"
-import Layout from "../layout"
 
 class Header extends PureComponent {
   static propTypes = {

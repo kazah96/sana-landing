@@ -18,6 +18,17 @@ class HeaderPage extends PureComponent {
     return (
       <React.Fragment>
         <header className="header">
+          <div className="brands">
+            <a href="https://t.me/svnvsvg">
+              <i class="fab fa-telegram"></i>
+            </a>
+            <a href="https://twitter.com/BblCoKa9_AcTma">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com/svnvsvg">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
           <h2 className="name">{title}</h2>
           <h4 className="sub-name">{subtitle}</h4>
           <Menu links={links} />

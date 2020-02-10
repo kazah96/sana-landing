@@ -1,10 +1,10 @@
-import React, { PureComponent } from "react"
-import "./style.css"
-import Layout from "../layout"
+import React, { PureComponent } from 'react'
+import './style.css'
+import Layout from '../layout'
 
-class VideoPage extends PureComponent {
+class VideoPageTemplate extends PureComponent {
   componentDidMount() {
-    document.title = this.props.pathContext.title || "Video"
+    document.title = this.props.pathContext.title || 'Video'
   }
 
   render() {
@@ -28,4 +28,4 @@ class VideoPage extends PureComponent {
   }
 }
 
-export default VideoPage
+export default VideoPageTemplate

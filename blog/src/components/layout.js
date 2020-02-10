@@ -21,6 +21,13 @@ function getConfig(queryQlResult) {
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
+      allFile {
+        edges {
+          node {
+            id
+          }
+        }
+      }
       allStrapiArticle {
         edges {
           node {
@@ -45,12 +52,18 @@ const Layout = ({ children }) => {
   const config = getConfig(data)
 
   const pages = data.allStrapiArticle.edges.map(({ node }) => ({
-    ...node
+    ...node,
   }))
 
   return (
     <>
-      <Header title={config.title} subtitle={config.subtitle} pages={pages} />
+      <Header
+        title={config.title}
+        width="200px"
+        height="200px"
+        subtitle={config.subtitle}
+        pages={pages}
+      />
       <div
         style={{
           margin: `0 auto`,
