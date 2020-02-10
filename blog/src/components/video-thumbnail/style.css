@@ -1,13 +1,25 @@
 .thumbnail {
   display: inline-block;
-  margin: 0;
+  margin: 2px;
   cursor: pointer;
   position: relative;
   background: black;
-  width: 350px;
-  height: 220px;
+  /* width: 350px; */
+  height: 230px;
   overflow: hidden;
 }
+
+@media screen and (max-width: 740px) {
+  .thumbnail {
+    height: 120px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .thumbnail {
+    height: 170px;
+  }
+}
+
 
 .img {
   height: 100%;
