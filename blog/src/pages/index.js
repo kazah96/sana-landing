@@ -7,12 +7,10 @@ import "./style.css"
 import Layout from "../components/layout"
 
 class Portfolio extends PureComponent {
-  state = {
-    images: {},
-  }
+  constructor(props) {
+    super(props)
 
-  componentDidMount() {
-    this.setState({
+    this.state = {
       images: this.props.data.allFile.edges.reduce((acc, next) => {
         const { node } = next
 
@@ -27,7 +25,7 @@ class Portfolio extends PureComponent {
           [node.name]: { ...acc[node.name], [fileext]: node.publicURL },
         }
       }, {}),
-    })
+    }
   }
 
   getVideoGifImg = video => {
