@@ -1,7 +1,19 @@
 .thumbnails-container > a {
-    font-size: 0;
+  font-size: 0;
 }
 
 .thumbnails-container {
-    line-height: 0;
+  max-width: 1280px;
+  line-height: 0;
+}
+
+@media screen and (max-width: 740px) {
+  .thumbnails-container {
+    max-width: 720px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .thumbnails-container {
+    max-width: 800px;
+  }
 }
