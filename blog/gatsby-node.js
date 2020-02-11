@@ -2,25 +2,54 @@ const path = require(`path`)
 const fs = require("fs")
 const gifFrames = require("gif-frames")
 
-const gifFolder = "src/images/video-thumbs/gif"
-const imgFolder = "src/images/video-thumbs/pic"
+// exports.onPostBootstrap = ({ graphql, actions }) => {
+//   console.log("PREBUILD")
+//   const r = graphql(
+//     `
+//       query loadPagesQuery($limit: Int!) {
+//         allStrapiVideo(limit: $limit) {
+//           edges {
+//             node {
+//               title
+//               video_url
+//               description
+//             }
+//           }
+//         }
+//       }
+//     `,
+//     { limit: 1000 }
+//   ).then(result => {
+//     console.log(result)
+//     throw new Error()
+//   })
 
-fs.readdir(gifFolder, (err, files) => {
-  files.forEach(file => {
-    if (path.extname(file) === ".gif") {
+//   const gifFolder = "src/images/video-thumbs/gif"
+//   const imgFolder = "src/images/video-thumbs/pic"
 
-      const filename = file.slice(0,-4);
+//   if (!fs.existsSync(gifFolder)) fs.mkdirSync(gifFolder, { recursive: true })
+//   if (!fs.existsSync(imgFolder)) fs.mkdirSync(imgFolder, { recursive: true })
 
-      gifFrames({ url: path.resolve(gifFolder, file), frames: 0 }).then(
-        function(frameData) {
-          frameData[0]
-            .getImage()
-            .pipe(fs.createWriteStream(path.resolve(imgFolder, `${filename}.jpg`)))
-        }
-      )
-    }
-  })
-})
+//   fs.readdir(gifFolder, (err, files) => {
+//     if (!files) return
+
+//     files.forEach(file => {
+//       if (path.extname(file) === ".gif") {
+//         const filename = file.slice(0, -4)
+
+//         gifFrames({ url: path.resolve(gifFolder, file), frames: 0 }).then(
+//           function(frameData) {
+//             frameData[0]
+//               .getImage()
+//               .pipe(
+//                 fs.createWriteStream(path.resolve(imgFolder, `${filename}.jpg`))
+//               )
+//           }
+//         )
+//       }
+//     })
+//   })
+// }
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -43,6 +72,7 @@ exports.createPages = ({ graphql, actions }) => {
               id
               title
               url
+              ffwe { ... }
               content
             }
           }
@@ -65,6 +95,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
+
       createPage({
         // Path for this page — required
         path: `/${node.url || node.title}`,
@@ -76,6 +107,7 @@ exports.createPages = ({ graphql, actions }) => {
     })
     // Create blog post pages.
     result.data.allStrapiVideo.edges.forEach(({ node }) => {
+      console.log(node)
       createPage({
         // Path for this page — required
         path: `/videos/${node.title}`,

@@ -17,6 +17,12 @@
     },
     "url": {
       "type": "string"
+    },
+    "ffwe": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
     }
   }
 }
