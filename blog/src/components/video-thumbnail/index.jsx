@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import "./style.css"
 import PropTypes from "prop-types"
-import { graphql } from "gatsby"
 
 class VideoThumbnail extends Component {
   static propTypes = {
@@ -22,15 +21,14 @@ class VideoThumbnail extends Component {
   }
 
   render() {
+    const style = { display: this.state.isActive ? "inline" : "none" }
     return (
       <span
         className="thumbnail"
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
-        {this.state.isActive && (
-          <img src={this.props.gifUrl} alt="" className="img" />
-        )}
+        <img src={this.props.gifUrl} alt="" className="img" style={style} />
         <img src={this.props.imgUrl} alt="" className="img" />
         <div className="label">{this.props.name}</div>
       </span>
