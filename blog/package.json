@@ -34,8 +34,9 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "deploy": "surge --project ./public --domain umirzakovs.surge.sh ",
+    "deploy:main": "surge --project ./public --domain umirzakovs.surge.sh ",
     "deploy:test": "surge --project ./public --domain umirzakovs-test.surge.sh ",
+    "deploy:prod": "surge --project ./public --domain https://umirzakov.site",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",

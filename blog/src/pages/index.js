@@ -45,8 +45,11 @@ class Portfolio extends PureComponent {
       if (a.node.orderby < b.node.orderby) return -1
       return 0
     })
-    const gifRandomSeed = parseInt(this.context.gif_active_seed) || 0
-    const showGif = !!parseInt(this.context.show_gif)
+
+    const context = this.context || {};
+
+    const gifRandomSeed = parseInt(context.gif_active_seed) || 0
+    const showGif = !!parseInt(context.show_gif)
 
     return (
       <Layout>
