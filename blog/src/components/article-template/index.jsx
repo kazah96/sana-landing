@@ -8,7 +8,7 @@ class ArticleTemplate extends PureComponent {
 
   render() {
 
-    const { title, content } = this.props.pathContext
+    const { content } = this.props.pathContext
 
     return (
       <Layout>

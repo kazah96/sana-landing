@@ -1,4 +1,26 @@
 const path = require(`path`)
+const fs = require("fs")
+const gifFrames = require("gif-frames")
+
+const gifFolder = "src/images/video-thumbs/gif"
+const imgFolder = "src/images/video-thumbs/pic"
+
+fs.readdir(gifFolder, (err, files) => {
+  files.forEach(file => {
+    if (path.extname(file) === ".gif") {
+
+      const filename = file.slice(0,-4);
+
+      gifFrames({ url: path.resolve(gifFolder, file), frames: 0 }).then(
+        function(frameData) {
+          frameData[0]
+            .getImage()
+            .pipe(fs.createWriteStream(path.resolve(imgFolder, `${filename}.jpg`)))
+        }
+      )
+    }
+  })
+})
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
