@@ -2,11 +2,13 @@ import React, { PureComponent } from "react"
 import VideoThumb from "../components/video-thumbnail"
 
 import { Link, graphql } from "gatsby"
-
+import { SettingsContext } from "../components/settings-context"
 import "./style.css"
 import Layout from "../components/layout"
 
 class Portfolio extends PureComponent {
+  static contextType = SettingsContext
+
   constructor(props) {
     super(props)
 
@@ -43,6 +45,8 @@ class Portfolio extends PureComponent {
       if (a.node.orderby < b.node.orderby) return -1
       return 0
     })
+    const gifRandomSeed = parseInt(this.context.gif_active_seed) || 0
+    const showGif = !!parseInt(this.context.show_gif)
 
     return (
       <Layout>
@@ -50,9 +54,23 @@ class Portfolio extends PureComponent {
           {videos.map(({ node: item }, idx) => {
             const [gif, img] = this.getVideoGifImg(item)
 
+            const isActive =
+              gifRandomSeed > 0
+                ? !(
+                    Math.round(Math.random() * videos.length) %
+                    (videos.length - gifRandomSeed + 1)
+                  )
+                : false
+
             return (
               <Link key={`${item.title}${idx}`} to={`/videos/${item.title}`}>
-                <VideoThumb gifUrl={gif} imgUrl={img} name={item.title} />
+                <VideoThumb
+                  showGif={showGif}
+                  defaultActive={isActive}
+                  gifUrl={gif}
+                  imgUrl={img}
+                  name={item.title}
+                />
               </Link>
             )
           })}

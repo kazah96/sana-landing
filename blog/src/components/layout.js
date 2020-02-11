@@ -8,7 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { Consumer } from "./theming-context"
+import { Consumer } from "./settings-context"
 
 import Header from "./header"
 import "./layout.css"

@@ -7,6 +7,8 @@ class VideoThumbnail extends Component {
     imgUrl: PropTypes.string,
     gifUrl: PropTypes.string,
     name: PropTypes.string,
+    defaultActive: PropTypes.bool,
+    showGif: PropTypes.bool,
   }
   state = {
     isActive: false,
@@ -21,15 +23,25 @@ class VideoThumbnail extends Component {
   }
 
   render() {
-    const style = { display: this.state.isActive ? "inline" : "none" }
+    const style = {
+      opacity: this.state.isActive || this.props.defaultActive ? "1" : "0",
+    }
+
     return (
       <span
         className="thumbnail"
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
-        <img src={this.props.gifUrl} alt="" className="img" style={style} />
-        <img src={this.props.imgUrl} alt="" className="img" />
+        {this.props.showGif && (
+          <img
+            src={this.props.gifUrl}
+            alt=""
+            className="img gif"
+            style={style}
+          />
+        )}
+        <img src={this.props.imgUrl} alt="" className="img pic" />
         <div className="label">{this.props.name}</div>
       </span>
     )
