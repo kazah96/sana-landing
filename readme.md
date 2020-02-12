@@ -36,5 +36,7 @@ npm run build
 
 ```
 cd sana-landing/blog 
-npm run deploy
+npm run deploy:test # для деплоя на тестовый сервер umirzakovs-test.surge.sh
+npm run deploy:main # для деплоя на основной сервер umirzakovs.surge.sh
+npm run deploy:prod # для деплоя на продуктовый сервер umirzakov.site
 ```

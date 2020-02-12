@@ -6,14 +6,14 @@
 
 // You can delete this file if you're not using it
 
-const React = require("react")
-const ThemeProvider = require("./src/components/theming-context").Provider
+const React = require('react')
+const SettingsContext = require('./src/components/settings-context').Provider
 const theme = localStorage.getItem('theme');
-document.documentElement.setAttribute('theme', theme || 'light');
+document.documentElement.setAttribute('theme', theme || 'dark');
 
 exports.wrapRootElement = ({ element, props }) => {
   // props provide same data to Layout as Page element will get
   // including location, data, etc - you don't need to pass it
 
-  return <ThemeProvider value={'dark'}>{element}</ThemeProvider>
+  return <SettingsContext>{element}</SettingsContext>
 }

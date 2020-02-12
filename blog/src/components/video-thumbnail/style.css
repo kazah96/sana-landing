@@ -23,13 +23,12 @@
   }
 }
 
-@media screen and (max-width: 1200px ) and (min-width: 741px) {
+@media screen and (max-width: 1200px) and (min-width: 741px) {
   .thumbnail {
     width: 250px;
     height: 170px;
   }
 }
-
 
 .img {
   height: 100%;
@@ -38,6 +37,19 @@
   object-fit: cover;
   filter: var(--video-from-filter);
   transition: -webkit-filter ease-in-out 0.3s, filter ease-in-out 0.3s;
+}
+
+.gif {
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  z-index: 6;
+}
+
+.pic {
+  left: 0;
+  position: absolute;
+  z-index: 5;
 }
 
 .thumbnail:hover > .img {
@@ -55,6 +67,7 @@
   color: rgb(255, 255, 255);
   position: absolute;
   font-family: "Oswald", sans-serif;
+  z-index: 10;
   font-weight: 200;
   width: 100%;
   padding: 0 10%;

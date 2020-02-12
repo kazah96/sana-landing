@@ -23,6 +23,9 @@
     },
     "orderby": {
       "type": "integer"
+    },
+    "local_image_name": {
+      "type": "string"
     }
   }
 }

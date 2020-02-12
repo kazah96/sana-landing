@@ -7,14 +7,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "gatsby": "^2.19.7",
-    "gatsby-image": "^2.2.39",
-    "gatsby-plugin-manifest": "^2.2.39",
-    "gatsby-plugin-offline": "^3.0.32",
-    "gatsby-plugin-react-helmet": "^3.1.21",
-    "gatsby-plugin-sharp": "^2.4.3",
-    "gatsby-source-filesystem": "^2.1.46",
-    "gatsby-source-strapi": "^0.0.10",
-    "gatsby-transformer-sharp": "^2.3.13",
+    "gatsby-image": "^2.2.40",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -23,6 +16,14 @@
     "react-media": "^1.10.0"
   },
   "devDependencies": {
+    "gatsby-plugin-manifest": "^2.2.39",
+    "gatsby-plugin-offline": "^3.0.32",
+    "gatsby-plugin-react-helmet": "^3.1.21",
+    "gatsby-plugin-sharp": "^2.4.5",
+    "gatsby-source-filesystem": "^2.1.46",
+    "gatsby-source-strapi": "^0.0.10",
+    "gatsby-transformer-sharp": "^2.3.14",
+    "ffmpeg": "^0.0.4",
     "prettier": "^1.19.1",
     "surge": "0.21.3"
   },
@@ -32,7 +33,9 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "deploy": "surge --project ./public --domain umirzakovs.surge.sh ",
+    "deploy:main": "surge --project ./public --domain umirzakovs.surge.sh ",
+    "deploy:test": "surge --project ./public --domain umirzakovs-test.surge.sh ",
+    "deploy:prod": "surge --project ./public --domain https://umirzakov.site",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",

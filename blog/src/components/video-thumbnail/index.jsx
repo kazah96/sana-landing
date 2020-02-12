@@ -2,20 +2,61 @@ import React, { PureComponent } from "react"
 import "./style.css"
 import PropTypes from "prop-types"
 
-class Header extends PureComponent {
+class VideoThumbnail extends PureComponent {
+  video = React.createRef()
+
   static propTypes = {
+    id: PropTypes.number,
     imgUrl: PropTypes.string,
+    webmUrl: PropTypes.string,
     name: PropTypes.string,
+    defaultActive: PropTypes.bool,
+    showGif: PropTypes.bool,
+  }
+  state = {
+    isActive: false,
+  }
+
+  onMouseEnter = () => {
+    this.setState({ isActive: true })
+  }
+
+  onMouseLeave = () => {
+    this.setState({ isActive: false })
+  }
+
+  onMouseEnter = () => {
+    const vid = this.video.current
+    if (vid) {
+      vid.play()
+    }
+  }
+
+  onMouseLeave = () => {
+    const vid = this.video.current
+    if (vid) {
+      vid.pause()
+    }
   }
 
   render() {
+    const { imgUrl, webmUrl, name, id } = this.props
+
     return (
-      <span className="thumbnail">
-        <img src={this.props.imgUrl} alt="" className="img" />
-        <div className="label">{this.props.name}</div>
+      <span
+        className="thumbnail"
+        role="link"
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+        tabIndex={id}
+      >
+        <video ref={this.video} loop poster={imgUrl} muted className="img">
+          {webmUrl && <source src={webmUrl} />}
+        </video>
+        <div className="label">{name}</div>
       </span>
     )
   }
 }
 
-export default Header
+export default VideoThumbnail
