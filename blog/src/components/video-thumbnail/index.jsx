@@ -24,7 +24,10 @@ class VideoThumbnail extends Component {
 
   render() {
     const style = {
-      opacity: this.state.isActive || this.props.defaultActive ? "1" : "0",
+      opacity:
+        (this.state.isActive || this.props.defaultActive) && this.props.showGif
+          ? "1"
+          : "0",
     }
 
     return (
@@ -33,14 +36,7 @@ class VideoThumbnail extends Component {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
-        {this.props.showGif && (
-          <img
-            src={this.props.gifUrl}
-            alt=""
-            className="img gif"
-            style={style}
-          />
-        )}
+        <img src={this.props.gifUrl} className="img gif" style={style} />
         <img src={this.props.imgUrl} alt="" className="img pic" />
         <div className="label">{this.props.name}</div>
       </span>
