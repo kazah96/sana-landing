@@ -46,7 +46,7 @@ class VideoThumbnail extends PureComponent {
       <span
         className="thumbnail"
         role="link"
-        onMouseEnter={this.onMouseEnter}
+        onMouseEnter={this.onMouseComponentEnter}
         onMouseLeave={this.onMouseLeave}
         tabIndex={id}
       >
