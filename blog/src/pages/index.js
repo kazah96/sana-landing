@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { PureComponent } from "react"
 import VideoThumb from "../components/video-thumbnail"
 
 import { Link, graphql } from "gatsby"
@@ -15,7 +15,7 @@ function sortVideos(edges) {
 
 const videoExtension = "webm"
 
-class Portfolio extends Component {
+class Portfolio extends PureComponent {
   constructor(props) {
     super(props)
 

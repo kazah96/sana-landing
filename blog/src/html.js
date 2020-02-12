@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 export default function HTML(props) {
   return (
-    <html {...props.htmlAttributes}>
+    <html theme='dark' {...props.htmlAttributes} >
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
@@ -13,10 +13,7 @@ export default function HTML(props) {
         />
         {props.headComponents}
       </head>
-      <script
-        src="https://kit.fontawesome.com/e27d7a4eb0.js"
-        crossorigin="anonymous"
-      ></script>
+
       <body {...props.bodyAttributes}>
         <div id="settings-root"></div>
         {props.preBodyComponents}
@@ -27,6 +24,10 @@ export default function HTML(props) {
         />
         {props.postBodyComponents}
       </body>
+      <script
+        src="https://kit.fontawesome.com/e27d7a4eb0.js"
+        crossorigin="anonymous"
+      ></script>
     </html>
   )
 }
