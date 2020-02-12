@@ -33,6 +33,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "convert": "node ./convert.js files",
     "deploy:main": "surge --project ./public --domain umirzakovs.surge.sh ",
     "deploy:test": "surge --project ./public --domain umirzakovs-test.surge.sh ",
     "deploy:prod": "surge --project ./public --domain https://umirzakov.site",
