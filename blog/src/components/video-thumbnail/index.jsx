@@ -6,6 +6,7 @@ class VideoThumbnail extends PureComponent {
   video = React.createRef()
 
   static propTypes = {
+    id: PropTypes.number,
     imgUrl: PropTypes.string,
     webmUrl: PropTypes.string,
     name: PropTypes.string,
@@ -39,13 +40,15 @@ class VideoThumbnail extends PureComponent {
   }
 
   render() {
-    const { imgUrl, webmUrl, name } = this.props
+    const { imgUrl, webmUrl, name, id } = this.props
 
     return (
       <span
         className="thumbnail"
+        role="link"
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
+        tabIndex={id}
       >
         <video ref={this.video} loop poster={imgUrl} muted className="img">
           {webmUrl && <source src={webmUrl} />}

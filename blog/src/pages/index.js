@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import VideoThumb from "../components/video-thumbnail"
 
 import { Link, graphql } from "gatsby"
-import { SettingsContext } from "../components/settings-context"
 import "./style.css"
 import Layout from "../components/layout"
 
@@ -15,7 +14,6 @@ function sortVideos(edges) {
 }
 
 const videoExtension = "webm"
-const imageExtension = "jpg"
 
 class Portfolio extends Component {
   constructor(props) {
@@ -54,12 +52,17 @@ class Portfolio extends Component {
     return (
       <Layout>
         <div className="thumbnails-container">
-          {videos.map(({ node: item }) => {
+          {videos.map(({ node: item }, idx) => {
             const [webm, img] = this.getVideoWebmImg(item)
 
             return (
-              <Link to={`/videos/${item.title}`}>
-                <VideoThumb imgUrl={img} webmUrl={webm} name={item.title} />
+              <Link key={`${idx}${item.title}`} to={`/videos/${item.title}`}>
+                <VideoThumb
+                  id={idx}
+                  imgUrl={img}
+                  webmUrl={webm}
+                  name={item.title}
+                />
               </Link>
             )
           })}

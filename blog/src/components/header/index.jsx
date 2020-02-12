@@ -35,7 +35,13 @@ class HeaderPage extends PureComponent {
       <React.Fragment>
         <header className="header">
           <div className={cn("brands", { "brands-dark": theme === "dark" })}>
-            <i onClick={this.changeTheme} className="fas fa-adjust"></i>
+            <i
+              role="button"
+              onKeyPress={this.changeTheme}
+              onClick={this.changeTheme}
+              className="fas fa-adjust"
+              tabIndex={0}
+            ></i>
             <a
               target="_blank"
               rel="noopener noreferrer"
