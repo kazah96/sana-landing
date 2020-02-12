@@ -9,6 +9,19 @@ class VideoThumbnail extends PureComponent {
     imgUrl: PropTypes.string,
     webmUrl: PropTypes.string,
     name: PropTypes.string,
+    defaultActive: PropTypes.bool,
+    showGif: PropTypes.bool,
+  }
+  state = {
+    isActive: false,
+  }
+
+  onMouseEnter = () => {
+    this.setState({ isActive: true })
+  }
+
+  onMouseLeave = () => {
+    this.setState({ isActive: false })
   }
 
   onMouseEnter = () => {

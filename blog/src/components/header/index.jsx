@@ -5,7 +5,6 @@ import cn from "classnames"
 import "./style.css"
 
 import Menu from "./menu"
-import { Consumer } from "../theming-context"
 
 const defaultLinks = [{ title: "portfolio", url: "/" }]
 
@@ -25,7 +24,7 @@ class HeaderPage extends PureComponent {
   }
 
   render() {
-    const { title, subtitle, pages, theme, toggleTheme } = this.props
+    const { title, subtitle, pages, theme } = this.props
 
     const links = [
       ...defaultLinks,
@@ -36,30 +35,30 @@ class HeaderPage extends PureComponent {
       <React.Fragment>
         <header className="header">
           <div className={cn("brands", { "brands-dark": theme === "dark" })}>
-            <i onClick={this.changeTheme} class="fas fa-adjust"></i>
+            <i onClick={this.changeTheme} className="fas fa-adjust"></i>
             <a
               target="_blank"
               rel="noopener noreferrer"
               href="https://t.me/svnvsvg"
             >
-              <i class="fab fa-telegram"></i>
+              <i className="fab fa-telegram"></i>
             </a>
             <a
               target="_blank"
               rel="noopener noreferrer"
               href="https://twitter.com/BblCoKa9_AcTma"
             >
-              <i class="fab fa-twitter"></i>
+              <i className="fab fa-twitter"></i>
             </a>
             <a
               target="_blank"
               rel="noopener noreferrer"
               href="https://instagram.com/svnvsvg"
             >
-              <i class="fab fa-instagram"></i>
+              <i className="fab fa-instagram"></i>
             </a>
           </div>
-          <a href="/" style={{ "text-decoration": "none" }}>
+          <a href="/" style={{ textDecoration: "none" }}>
             <h2 className="name">{title}</h2>
           </a>
           <h4 className="sub-name">{subtitle}</h4>

@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import VideoThumb from "../components/video-thumbnail"
 
 import { Link, graphql } from "gatsby"
-
+import { SettingsContext } from "../components/settings-context"
 import "./style.css"
 import Layout from "../components/layout"
 
@@ -91,6 +91,7 @@ export const pageQuery = graphql`
           video_url
           image_url
           orderby
+          local_image_name
         }
       }
     }
