@@ -14,25 +14,35 @@ fs.readdir(webmFolder, (err, files) => {
   files.forEach(file => {
     if (path.extname(file) === videoExtension) {
       const filename = file.slice(0, -5)
+      console.log(filename)
 
-      const process = new ffmpeg(path.join(webmFolder, file))
-
-      process.then(video => {
-        video.fnExtractFrameToJPG(
-          imgFolder,
-          {
-            frame_rate: 1,
-            number: 1,
-            file_name: filename,
-          },
-          function(err, files) {
-            fs.renameSync(files[0], path.join(imgFolder, `${filename}.jpg`))
-          }
-        )
+      new ffmpeg(path.join(webmFolder, file)).then(video => {
+        video.fnExtractFrameToJPG(imgFolder, {
+          frame_rate: 1,
+          number: 1,
+          file_name: filename,
+        })
       })
     }
   })
 })
+
+exports.onPostBootstrap = () => {
+  fs.readdir(imgFolder, (err, files) => {
+    files.forEach(file => {
+      const ext = path.extname(file)
+      const filename = file.slice(0, -ext.length)
+      const res = /(\w+)_\d/.exec(filename)
+
+      if (res) {
+        fs.renameSync(
+          path.join(imgFolder, file),
+          path.join(imgFolder, `${res[1]}${ext}`)
+        )
+      }
+    })
+  })
+}
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
