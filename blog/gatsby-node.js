@@ -1,5 +1,39 @@
 const path = require(`path`)
 
+const fs = require("fs")
+const ffmpeg = require("ffmpeg")
+
+const videoExtension = ".webm"
+const webmFolder = "video-thumbs/webm"
+const imgFolder = "video-thumbs/pic"
+
+if (!fs.existsSync(webmFolder)) fs.mkdirSync(webmFolder)
+if (!fs.existsSync(imgFolder)) fs.mkdirSync(imgFolder)
+
+fs.readdir(webmFolder, (err, files) => {
+  files.forEach(file => {
+    if (path.extname(file) === videoExtension) {
+      const filename = file.slice(0, -5)
+
+      const process = new ffmpeg(path.join(webmFolder, file))
+
+      process.then(video => {
+        video.fnExtractFrameToJPG(
+          imgFolder,
+          {
+            frame_rate: 1,
+            number: 1,
+            file_name: filename,
+          },
+          function(err, files) {
+            fs.renameSync(files[0], path.join(imgFolder, `${filename}.jpg`))
+          }
+        )
+      })
+    }
+  })
+})
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const blogPostTemplate = path.resolve(
