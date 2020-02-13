@@ -1,8 +1,15 @@
 .video {
   animation: 0.5s ease-in 0s 1 slideInFromLeft;
-  width: 100%;
+  max-width: 960px;
 }
 
+.video-page-container {
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .video-description {
   width: 700px;

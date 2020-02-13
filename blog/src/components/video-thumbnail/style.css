@@ -37,7 +37,12 @@
   margin-bottom: 0;
   object-fit: cover;
   filter: var(--video-from-filter);
-  transition: -webkit-filter ease-in-out 0.3s, filter ease-in-out 0.3s;
+  transition: -webkit-filter ease-in-out 0.3s, filter ease-in-out 0.3s, opacity ease 1s;
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
 }
 
 .gif {
@@ -77,12 +82,11 @@
   transform: translate(0, -50%);
   text-align: center;
   opacity: var(--video-label-opacity-from);
-  transition: opacity ease-out 0.4s, letter-spacing ease-in-out 0.3s,
+  transition: opacity ease-out 0.4s,
     transform ease-in-out 0.3s;
 }
 
 .thumbnail:hover > .label {
   opacity: var(--video-label-opacity-to);
   transform: scale(1.1);
-  letter-spacing: 0.3em;
 }

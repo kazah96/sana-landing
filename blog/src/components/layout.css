@@ -43,6 +43,10 @@ html {
 }
 
 
+.disable-hover {
+  pointer-events: none;
+}
+
 body {
   background: var(--main-color);
   animation: 1s ease-in 0s 1 slideInFromLeft;

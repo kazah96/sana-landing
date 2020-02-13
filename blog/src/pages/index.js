@@ -1,13 +1,10 @@
-import React, { Component } from "react"
+import React, { PureComponent } from "react"
 import VideoThumb from "../components/video-thumbnail"
-import cn from "classnames"
 
 import { Link, graphql } from "gatsby"
 import "./style.css"
 import Layout from "../components/layout"
-import Loader from "../components/loader"
-import SEO from '../components/seo'
-
+import SEO from "../components/seo"
 
 const pageTitle = "Portfolio"
 
@@ -21,12 +18,31 @@ function sortVideos(edges) {
 
 const videoExtension = "webm"
 
-class Portfolio extends Component {
+if (typeof document !== "undefined" && typeof window !== "undefined") {
+  var body = document.body,
+    timer
+
+  window.addEventListener(
+    "scroll",
+    function() {
+      clearTimeout(timer)
+      if (!body.classList.contains("disable-hover")) {
+        body.classList.add("disable-hover")
+      }
+
+      timer = setTimeout(function() {
+        body.classList.remove("disable-hover")
+      }, 500)
+    },
+    false
+  )
+}
+
+class Portfolio extends PureComponent {
   constructor(props) {
     super(props)
 
     this.state = {
-      loadedCount: {},
       images: props.data.allFile.edges.reduce((acc, next) => {
         const { node } = next
 
@@ -54,24 +70,15 @@ class Portfolio extends Component {
     return [video.image_url, video.image_url]
   }
 
-  onHasLoaded = id => {
-    const loadedCount = this.state.loadedCount
-    this.setState({ loadedCount: { ...loadedCount, [id]: true } })
-  }
-
   render() {
     const videos = sortVideos(this.props.data.allStrapiVideo.edges)
 
-    const isLoading = Object.keys(this.state.loadedCount).length < videos.length
-    const thumbClass = cn("thumbnails-container", {
-      hide: isLoading,
-    })
+    const thumbClass = "thumbnails-container"
 
     return (
       <>
         <SEO lang="en" title={pageTitle} description={"Portfolio main page"} />
         <Layout>
-          {isLoading && <Loader />}
           <div className={thumbClass}>
             {videos.map(({ node: item }, idx) => {
               const [webm, img] = this.getVideoWebmImg(item)
@@ -79,7 +86,6 @@ class Portfolio extends Component {
               return (
                 <Link key={`${idx}${item.title}`} to={`/videos/${item.title}`}>
                   <VideoThumb
-                    onHasLoaded={this.onHasLoaded}
                     id={idx}
                     imgUrl={img}
                     webmUrl={webm}

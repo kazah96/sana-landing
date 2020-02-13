@@ -4,30 +4,38 @@ import PropTypes from "prop-types"
 import cn from "classnames"
 
 class VideoThumbnail extends PureComponent {
-  video = React.createRef()
-  
-  timer = setInterval(() => {
+  constructor(props) {
+    super(props)
+
+    this.video = React.createRef()
     this.checkReady()
-  }, 700)
+    this.timer = setInterval(() => {
+      this.checkReady()
+    }, 700)
+  }
 
   static propTypes = {
     id: PropTypes.number,
     imgUrl: PropTypes.string,
     webmUrl: PropTypes.string,
     name: PropTypes.string,
-    defaultActive: PropTypes.bool,
-    showGif: PropTypes.bool,
+    defaultActive: PropTypes.bool
   }
   state = {
-    isActive: false,
+    isLoading: true
+  }
+
+  hasLoaded = () => {
+    clearInterval(this.timer)
+    this.setState({ isLoading: false })
   }
 
   checkReady = () => {
     const vid = this.video.current
     if (vid) {
-      if (vid.readyState > 3) this.props.onHasLoaded(this.props.id)
-
-      clearInterval(this.timer)
+      if (vid.readyState > 3) {
+        this.hasLoaded()
+      }
     }
   }
 
@@ -46,13 +54,14 @@ class VideoThumbnail extends PureComponent {
   }
 
   onLoad = () => {
-    this.checkReady()
+    this.hasLoaded()
   }
 
   render() {
     const { imgUrl, webmUrl, name } = this.props
-
+    const { isLoading } = this.state
     const thumbClass = cn("thumbnail")
+    const videoClass = cn("img", { hide: isLoading })
 
     return (
       <span
@@ -64,16 +73,19 @@ class VideoThumbnail extends PureComponent {
       >
         <video
           ref={this.video}
-          onError={() => this.props.onHasLoaded(this.props.id)} /* Костыль для того чтоб на айфоне лоадер отрабатывал нормально. Нужно пофиксить в дальнейшем*/
+          onError={
+            this.hasLoaded
+          } /* Костыль для того чтоб на айфоне лоадер отрабатывал нормально. Нужно пофиксить в дальнейшем*/
           onCanPlayThrough={this.onLoad}
           onCanPlay={this.onLoad}
           loop={true}
           poster={imgUrl}
           muted={true}
-          className="img"
+          className={videoClass}
         >
           <source src={webmUrl} />
-          <source src={imgUrl} /> {/* Костыль для того чтоб на айфоне лоадер отрабатывал нормально. Нужно пофиксить в дальнейшем*/}
+          <source src={imgUrl} />
+          {/* Костыль для того чтоб на айфоне лоадер отрабатывал нормально. Нужно пофиксить в дальнейшем*/}
         </video>
         <div className="label">{name}</div>
       </span>

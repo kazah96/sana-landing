@@ -11,17 +11,19 @@ class VideoPageTemplate extends PureComponent {
       <React.Fragment>
         <SEO lang="en" title={title} description={description} />
         <Layout>
-          <iframe
-            title={title}
-            className="video"
-            width="800px"
-            height="400px"
-            src={video_url}
-            allow="autoplay; fullscreen"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-          <div className="video-description">{description}</div>
+          <div className="video-page-container">
+            <iframe
+              title={title}
+              className="video"
+              width="800px"
+              height="400px"
+              src={video_url}
+              allow="autoplay; fullscreen"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+            <div className="video-description">{description}</div>
+          </div>
         </Layout>
       </React.Fragment>
     )
