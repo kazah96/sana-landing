@@ -9,17 +9,13 @@ import Menu from "./menu"
 const defaultLinks = [{ title: "portfolio", url: "/" }]
 
 class HeaderPage extends PureComponent {
-  state = { theme: "light" }
-
   changeTheme = () => {
     if (this.state.theme === "dark") {
-      this.setState({ theme: "light" })
       localStorage.setItem("theme", "light")
       document.documentElement.setAttribute("theme", "light")
     } else {
       document.documentElement.setAttribute("theme", "dark")
       localStorage.setItem("theme", "dark")
-      this.setState({ theme: "dark" })
     }
   }
 
@@ -44,6 +40,7 @@ class HeaderPage extends PureComponent {
             ></i>
             <a
               target="_blank"
+              aria-label="Telegram"
               rel="noopener noreferrer"
               href="https://t.me/svnvsvg"
             >
@@ -51,6 +48,7 @@ class HeaderPage extends PureComponent {
             </a>
             <a
               target="_blank"
+              aria-label="Twitter"
               rel="noopener noreferrer"
               href="https://twitter.com/BblCoKa9_AcTma"
             >
@@ -58,6 +56,7 @@ class HeaderPage extends PureComponent {
             </a>
             <a
               target="_blank"
+              aria-label="Instagram"
               rel="noopener noreferrer"
               href="https://instagram.com/svnvsvg"
             >

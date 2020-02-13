@@ -7,7 +7,7 @@ li {
   margin-right: 40px;
 }
 .link {
-  color: rgb(92, 92, 92);
+  color: var(--gray-color);
   text-decoration: none;
   margin: 0;
   font-family: Varela Round, Helvetica, arial, sans-serif;

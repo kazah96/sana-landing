@@ -6,6 +6,10 @@ import { Link, graphql } from "gatsby"
 import "./style.css"
 import Layout from "../components/layout"
 import Loader from "../components/loader"
+import SEO from '../components/seo'
+
+
+const pageTitle = "Portfolio"
 
 function sortVideos(edges) {
   return edges.sort((a, b) => {
@@ -64,26 +68,29 @@ class Portfolio extends Component {
     })
 
     return (
-      <Layout>
-        {isLoading && <Loader />}
-        <div className={thumbClass}>
-          {videos.map(({ node: item }, idx) => {
-            const [webm, img] = this.getVideoWebmImg(item)
+      <>
+        <SEO lang="en" title={pageTitle} description={"Portfolio main page"} />
+        <Layout>
+          {isLoading && <Loader />}
+          <div className={thumbClass}>
+            {videos.map(({ node: item }, idx) => {
+              const [webm, img] = this.getVideoWebmImg(item)
 
-            return (
-              <Link key={`${idx}${item.title}`} to={`/videos/${item.title}`}>
-                <VideoThumb
-                  onHasLoaded={this.onHasLoaded}
-                  id={idx}
-                  imgUrl={img}
-                  webmUrl={webm}
-                  name={item.title}
-                />
-              </Link>
-            )
-          })}
-        </div>
-      </Layout>
+              return (
+                <Link key={`${idx}${item.title}`} to={`/videos/${item.title}`}>
+                  <VideoThumb
+                    onHasLoaded={this.onHasLoaded}
+                    id={idx}
+                    imgUrl={img}
+                    webmUrl={webm}
+                    name={item.title}
+                  />
+                </Link>
+              )
+            })}
+          </div>
+        </Layout>
+      </>
     )
   }
 }

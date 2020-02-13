@@ -50,7 +50,7 @@ class VideoThumbnail extends PureComponent {
   }
 
   render() {
-    const { imgUrl, webmUrl, name, id } = this.props
+    const { imgUrl, webmUrl, name } = this.props
 
     const thumbClass = cn("thumbnail")
 
@@ -60,7 +60,7 @@ class VideoThumbnail extends PureComponent {
         role="link"
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-        tabIndex={id}
+        tabIndex={0}
       >
         <video
           ref={this.video}

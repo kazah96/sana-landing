@@ -1,24 +1,29 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Umirzakov`,
+    description: `Filmmaker, vfx artist and creative director based in nur-sultan. `,
+    url: 'http://umirzakovs-test.surge.sh/',
+    siteUrl: 'http://umirzakovs-test.surge.sh/',
+    twitterUsername: '@BblCoKa9_AcTma',
+    author: 'autrrr',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-robots-txt',
     {
-      resolve: 'gatsby-source-strapi',  
+      resolve: 'gatsby-source-strapi',
       options: {
         // loginData: {
         //   identifier: "aa",
         //   password: "11111111",
         // },
         apiURL: 'http://localhost:1337',
-        contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
+        contentTypes: [
+          // List of the Content Types you want to be able to request from Gatsby.
           'user',
           'config',
           'article',
-          'video'
+          'video',
         ],
         queryLimit: 1000,
       },
@@ -40,7 +45,8 @@ module.exports = {
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
-        display: `minimal-ui`
+        display: `minimal-ui`,
+        icon: `src/images/s.png`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
