@@ -1,9 +1,11 @@
-import React, { PureComponent } from "react"
+import React, { Component } from "react"
 import VideoThumb from "../components/video-thumbnail"
+import cn from "classnames"
 
 import { Link, graphql } from "gatsby"
 import "./style.css"
 import Layout from "../components/layout"
+import Loader from "../components/loader"
 
 function sortVideos(edges) {
   return edges.sort((a, b) => {
@@ -15,11 +17,12 @@ function sortVideos(edges) {
 
 const videoExtension = "webm"
 
-class Portfolio extends PureComponent {
+class Portfolio extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      loadedCount: {},
       images: props.data.allFile.edges.reduce((acc, next) => {
         const { node } = next
 
@@ -47,17 +50,30 @@ class Portfolio extends PureComponent {
     return [video.image_url, video.image_url]
   }
 
+  onHasLoaded = id => {
+    const loadedCount = this.state.loadedCount
+    this.setState({ loadedCount: { ...loadedCount, [id]: true } })
+  }
+
   render() {
     const videos = sortVideos(this.props.data.allStrapiVideo.edges)
+
+    const isLoading = Object.keys(this.state.loadedCount).length < videos.length
+    const thumbClass = cn("thumbnails-container", {
+      hide: isLoading,
+    })
+
     return (
       <Layout>
-        <div className="thumbnails-container">
+        {isLoading && <Loader />}
+        <div className={thumbClass}>
           {videos.map(({ node: item }, idx) => {
             const [webm, img] = this.getVideoWebmImg(item)
 
             return (
               <Link key={`${idx}${item.title}`} to={`/videos/${item.title}`}>
                 <VideoThumb
+                  onHasLoaded={this.onHasLoaded}
                   id={idx}
                   imgUrl={img}
                   webmUrl={webm}

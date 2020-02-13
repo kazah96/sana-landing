@@ -1,9 +1,14 @@
 import React, { PureComponent } from "react"
 import "./style.css"
 import PropTypes from "prop-types"
+import cn from "classnames"
 
 class VideoThumbnail extends PureComponent {
   video = React.createRef()
+  
+  timer = setInterval(() => {
+    this.checkReady()
+  }, 700)
 
   static propTypes = {
     id: PropTypes.number,
@@ -17,12 +22,13 @@ class VideoThumbnail extends PureComponent {
     isActive: false,
   }
 
-  onMouseEnter = () => {
-    this.setState({ isActive: true })
-  }
+  checkReady = () => {
+    const vid = this.video.current
+    if (vid) {
+      if (vid.readyState > 3) this.props.onHasLoaded(this.props.id)
 
-  onMouseLeave = () => {
-    this.setState({ isActive: false })
+      clearInterval(this.timer)
+    }
   }
 
   onMouseEnter = () => {
@@ -39,19 +45,35 @@ class VideoThumbnail extends PureComponent {
     }
   }
 
+  onLoad = () => {
+    this.checkReady()
+  }
+
   render() {
     const { imgUrl, webmUrl, name, id } = this.props
 
+    const thumbClass = cn("thumbnail")
+
     return (
       <span
-        className="thumbnail"
+        className={thumbClass}
         role="link"
-        onMouseEnter={this.onMouseComponentEnter}
+        onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         tabIndex={id}
       >
-        <video ref={this.video} loop poster={imgUrl} muted className="img">
-          {webmUrl && <source src={webmUrl} />}
+        <video
+          ref={this.video}
+          onError={() => this.props.onHasLoaded(this.props.id)} /* Костыль для того чтоб на айфоне лоадер отрабатывал нормально. Нужно пофиксить в дальнейшем*/
+          onCanPlayThrough={this.onLoad}
+          onCanPlay={this.onLoad}
+          loop={true}
+          poster={imgUrl}
+          muted={true}
+          className="img"
+        >
+          <source src={webmUrl} />
+          <source src={imgUrl} /> {/* Костыль для того чтоб на айфоне лоадер отрабатывал нормально. Нужно пофиксить в дальнейшем*/}
         </video>
         <div className="label">{name}</div>
       </span>
