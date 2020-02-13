@@ -10,7 +10,9 @@ const defaultLinks = [{ title: "portfolio", url: "/" }]
 
 class HeaderPage extends PureComponent {
   changeTheme = () => {
-    if (this.state.theme === "dark") {
+    const theme = localStorage.getItem("theme")
+
+    if (theme === "dark") {
       localStorage.setItem("theme", "light")
       document.documentElement.setAttribute("theme", "light")
     } else {
