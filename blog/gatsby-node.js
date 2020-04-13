@@ -1,4 +1,5 @@
 const path = require(`path`)
+const { getSlugUrl } = require('./src/utils/url')
 
 const fs = require("fs")
 const ffmpeg = require("ffmpeg")
@@ -45,6 +46,7 @@ exports.onPostBootstrap = () => {
 }
 
 exports.createPages = ({ graphql, actions }) => {
+
   const { createPage } = actions
   const blogPostTemplate = path.resolve(
     `src/components/video-page-template/index.jsx`
@@ -86,10 +88,14 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
+
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
+      const slug = node.url || node.title;
+
+   
       createPage({
         // Path for this page — required
-        path: `/${node.url || node.title}`,
+        path: `/${slug}`,
         component: articleTemplate,
         context: {
           ...node,
@@ -98,9 +104,11 @@ exports.createPages = ({ graphql, actions }) => {
     })
     // Create blog post pages.
     result.data.allStrapiVideo.edges.forEach(({ node }) => {
+      const slugUrl = getSlugUrl(node.title)
+
       createPage({
         // Path for this page — required
-        path: `/videos/${node.title}`,
+        path: `/videos/${slugUrl}`,
         component: blogPostTemplate,
         context: {
           ...node,

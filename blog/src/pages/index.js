@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react"
 import VideoThumb from "../components/video-thumbnail"
+import { getSlugUrl } from '../utils/url'
 
 import { Link, graphql } from "gatsby"
 import "./style.css"
@@ -24,13 +25,13 @@ if (typeof document !== "undefined" && typeof window !== "undefined") {
 
   window.addEventListener(
     "scroll",
-    function() {
+    function () {
       clearTimeout(timer)
       if (!body.classList.contains("disable-hover")) {
         body.classList.add("disable-hover")
       }
 
-      timer = setTimeout(function() {
+      timer = setTimeout(function () {
         body.classList.remove("disable-hover")
       }, 500)
     },
@@ -84,7 +85,7 @@ class Portfolio extends PureComponent {
               const [webm, img] = this.getVideoWebmImg(item)
 
               return (
-                <Link key={`${idx}${item.title}`} to={`/videos/${item.title}`}>
+                <Link key={`${idx}${item.title}`} to={`/videos/${getSlugUrl(item.title)}`}>
                   <VideoThumb
                     id={idx}
                     imgUrl={img}
