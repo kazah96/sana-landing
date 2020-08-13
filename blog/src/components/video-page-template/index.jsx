@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import './style.css'
 import Layout from '../layout'
 import SEO from '../seo'
+import WebglTransition from '../webgl-transition'
 
 class VideoPageTemplate extends PureComponent {
   render() {
@@ -9,6 +10,7 @@ class VideoPageTemplate extends PureComponent {
 
     return (
       <React.Fragment>
+        <WebglTransition></WebglTransition>
         <SEO lang="en" title={title} description={description} />
         <Layout>
           <div className="video-page-container">

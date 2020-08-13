@@ -41,6 +41,7 @@ class VideoThumbnail extends PureComponent {
 
   onMouseEnter = () => {
     const vid = this.video.current
+    window.triggerAnimation()
     if (vid) {
       vid.play()
     }
