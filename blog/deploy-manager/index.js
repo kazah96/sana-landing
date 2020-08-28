@@ -1,6 +1,6 @@
 const yargs = require('yargs');
 const { default: chalk } = require('chalk');
-const dotenv = require('dotenv').config()
+require('dotenv').config()
 
 const user = process.env.FTPUSER;
 const password = process.env.PASSWORD;
@@ -18,7 +18,7 @@ const error = (msg) => {
 const config = { user, host, password }
 
 yargs
-  .demandCommand(2)
+  .demandCommand(1)
   .command(
     'publish',
     'Опубликовывает сайт',
@@ -36,14 +36,36 @@ yargs
         })
     },
     (argv) => {
-      require('./publish').run(config)
+      require('./deploy-manager').publish(config)
     }
   )
   .command(
-    'apply-backup',
+    'backup-last',
     'Откатывает на последний бэкап',
     (argv) => {
-      require('./backup').run(config)
+      require('./deploy-manager').applyLastBackup(config)
+    }
+  )
+  .command(
+    'backup-show',
+    'Показывает список всех доступных бэкапов',
+    (argv) => {
+      require('./deploy-manager').showBackups(config)
+    }
+  )
+  .command(
+    'backup-apply [backup]',
+    'Применяет указанный бэкап',
+    (yargs) => {
+      yargs
+        .positional('backup', {
+          describe: 'update awesome-block types',
+          type: 'string',
+        })
+    },
+    (argv) => {
+      console.log(argv.backup)
+      require('./deploy-manager').applyBackup(config, argv.backup)
     }
   )
   .help().argv

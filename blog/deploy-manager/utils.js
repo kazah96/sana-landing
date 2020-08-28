@@ -5,15 +5,9 @@ const { cwd } = require('process');
 const Client = require('ftp');
 const { promisify } = require('util')
 
-const generateBackupName = () => {
-  const hashtable = "qwertyuiopasdfghjklzxcvbnm1234567890";
-  const genHash = (len) => Array(len).fill(1).map(number => hashtable[Math.floor(Math.random() * hashtable.length)]).join("")
-  const hashLen = 8
+const generateBackupName = () => `backup_${Date.now()}`
 
-  return `backup_${Date.now()}`
-}
-
-async function makeBackup(c) {
+async function makeBackup(c, ftpSiteDir) {
   const backupName = generateBackupName();
   await c.cwd('~/')
 
@@ -27,12 +21,20 @@ async function makeBackup(c) {
   return backupName;
 }
 
-async function getLastBackup(c) {
+async function getBackupList(c) {
   const list = await c.list()
-
   const regex = /^backup_(\d+)$/;
 
-  const lastBack = list.filter(item => regex.test(item.name)).sort((a, b) => {
+  return list.filter(item => regex.test(item.name))
+}
+
+async function fallbackToBackup(c, backupName, ftpSiteDir, failedSiteDir) {
+  await c.rename(ftpSiteDir, failedSiteDir);
+  await c.rename(backupName, ftpSiteDir);
+}
+
+async function getLastBackup(c) {
+  getBackupList().sort((a, b) => {
     if (a.name.split('_')[1] > b.name.split('_')[1]) return 1;
     if (a.name.split('_')[1] < b.name.split('_')[1]) return -1;
 
@@ -107,3 +109,5 @@ module.exports.getConnection = getConnection
 module.exports.makeBackup = makeBackup
 module.exports.generateBackupName = generateBackupName
 module.exports.getLastBackup = getLastBackup
+module.exports.getBackupList = getBackupList
+module.exports.fallbackToBackup = fallbackToBackup
