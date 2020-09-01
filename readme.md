@@ -39,4 +39,23 @@ cd sana-landing/blog
 npm run deploy:test # для деплоя на тестовый сервер umirzakovs-test.surge.sh
 npm run deploy:main # для деплоя на основной сервер umirzakovs.surge.sh
 npm run deploy:prod # для деплоя на продуктовый сервер umirzakov.site
+
+
+# Пособие по утилите deploy-manager
+
+Использование в директории /blog
+
+Для начала нужно создать файл .env с таким содержимым:
 ```
+HOST=%FTP_ADDRESS%
+FTPUSER=%USER%
+PASSWORD=%PASSWORD%
+```
+где нужно подставить свои данные из регру
+
+Использование: 
+  deploy-manager publish                Опубликовывает сайт
+  deploy-manager backup-last            Откатывает на последний бэкап
+  deploy-manager backup-show            Показывает список всех доступных бэкапов
+  deploy-manager backup-apply [backup]  Применяет указанный бэкап
+
