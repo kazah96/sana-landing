@@ -7,6 +7,16 @@ const { promisify } = require('util')
 
 const generateBackupName = () => `backup_${Date.now()}`
 
+path.join_old = path.join;
+
+path.join = function() {
+	var fullPath = path.join_old.apply(null, arguments);
+	if (process.platform === 'win32') {
+		fullPath = fullPath.replace(/\\/g, '/');
+	}
+	return fullPath;
+}
+
 async function makeBackup(c, ftpSiteDir) {
   const backupName = generateBackupName();
   await c.cwd('~/')
@@ -41,7 +51,7 @@ async function getLastBackup(c) {
     return 0
   })
 
-  if(!lastBack.length) return null;
+  if (!lastBack.length) return null;
 
   return lastBack.pop().name;
 }
